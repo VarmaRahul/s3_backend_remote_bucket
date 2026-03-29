@@ -35,22 +35,22 @@ Note the names of the S3 Bucket and DynamoDB Table created by this project.
 2. **Configure the Backend**
 In your other project's root directory, create or update a file (usually main.tf or backend.tf) with the following block:
 
-```bash
-terraform {
-  backend "s3" {
-    bucket         = "your-unique-s3-bucket-name"
-    key            = "project-name/terraform.tfstate" # Path within the bucket
-    region         = "your-aws-region"                # e.g., ap-south-1
-    dynamodb_table = "your-dynamodb-table-name"
-    encrypt        = true
-  }
-}
-```
+    ```bash
+    terraform {
+    backend "s3" {
+        bucket         = "your-unique-s3-bucket-name"
+        key            = "project-name/terraform.tfstate" # Path within the bucket
+        region         = "your-aws-region"                # e.g., ap-south-1
+        dynamodb_table = "your-dynamodb-table-name"
+        encrypt        = true
+    }
+    }
+    ```
 
 3. **Initialize the Remote State**
 Run the following command in that new project:
-```bash
-terraform init
-```
+    ```bash
+    terraform init
+    ```
 
 Terraform will detect the backend configuration and ask if you want to migrate your local state to S3. Type yes.
