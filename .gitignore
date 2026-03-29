@@ -1,0 +1,18 @@
+# Local terraform directory (contains provider binaries and modules)
+.terraform/
+
+# Local state files - These contain sensitive metadata about your infrastructure
+*.tfstate
+*.tfstate.backup
+*.tfstate.lock.info
+
+# Variables files (if you create them later for sensitive data)
+*.tfvars
+*.tfvars.json
+
+# Crash logs
+crash.log
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
