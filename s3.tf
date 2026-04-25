@@ -1,8 +1,35 @@
 resource "aws_s3_bucket" "mybucket" {
-  bucket = "abra-ka-dabra-state-bucket"
+  bucket = "terraform-state-vrahul-mumbai"
 
   tags = {
-    Name        = "abra-ka-dabra-state-bucket"
+    Name        = "terraform-state-vrahul-mumbai"
     Environment = "test"
   }
+}
+
+resource "aws_s3_bucket_versioning" "versioning" {
+  bucket = aws_s3_bucket.mybucket.id
+
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "encryption" {
+  bucket = aws_s3_bucket.mybucket.id
+
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "AES256"
+    }
+  }
+}
+
+resource "aws_s3_bucket_public_access_block" "block" {
+  bucket = aws_s3_bucket.mybucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
